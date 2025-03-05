@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee List</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .edit-btn, .delete-btn {
+        background-color: blue;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+</style>
+</head>
+<body>
+<h2>Customer List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Phone number</th>
+            <th>Address</th>
+            <th>Bill_no</th>
+            <th>Employee ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer[0] }}</td> <!-- Assuming emp_id is the first column -->
+            <td contenteditable="false">{{ customer[1] }}</td> <!-- Assuming emp_name is the second column -->
+            <td contenteditable="false">{{ customer[2] }}</td> <!-- Assuming emp_phno is the third column -->
+            <td contenteditable="false">{{ customer[3] }}</td>
+            <td contenteditable="false">{{ customer[4] }}</td> <!-- Assuming emp_name is the second column -->
+            <td contenteditable="false">{{ customer[5] }}</td> <!-- Assuming emp_phno is the third column -->
+            <td contenteditable="false">{{ customer[6] }}</td>
+            <td>
+                <button class="edit-btn" onclick="toggleEditable(this)">Edit</button>
+                <button class="delete-btn" onclick="deleteCustomer(this)">Delete</button>
+            </td><!-- Assuming emp_role is the fourth column -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    function toggleEditable(button) {
+        var row = button.parentNode.parentNode;
+        var cells = row.querySelectorAll('td');
+        cells.forEach(function(cell) {
+            cell.contentEditable = !cell.isContentEditable;
+        });
+        if (button.innerText === "Edit") {
+            button.innerText = "Save";
+        } else {
+            button.innerText = "Edit";
+            // Get the updated data
+            var cust_id = row.cells[0].innerText;
+            var cust_name = row.cells[1].innerText;
+            var age = row.cells[2].innerText;
+            var cust_phno = row.cells[3].innerText;
+            var address = row.cells[4].innerText;
+            var bill_no = row.cells[5].innerText;
+            var emp_id = row.cells[6].innerText;
+            // Send the updated data to the server
+            updateCustomer(cust_id, cust_name, age,cust_phno,address,bill_no,emp_id);
+        }
+    }
+
+    function updateCustomer(cust_id, cust_name, age,cust_phno,address,bill_no,emp_id) {
+        // Send a POST request to the server to update the database
+        fetch('/update_customer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cust_id:cust_id,
+                cust_name:cust_name,
+                age:age,
+                cust_phno:cust_phno,
+                address:address,
+                bill_no:bill_no,
+                emp_id:emp_id
+            })
+        }).then(response => {
+            if (response.ok) {
+                console.log("Customer updated successfully");
+            } else {
+                console.error("Failed to update customer");
+            }
+        }).catch(error => {
+            console.error("Error:", error);
+        });
+    }
+
+    function deleteCustomer(button) {
+        var row = button.parentNode.parentNode;
+        var cust_id = row.cells[0].innerText;
+        // Send a POST request to the server to delete the employee
+        fetch('/delete_customer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cust_id:cust_id
+            })
+        }).then(response => {
+            if (response.ok) {
+                console.log("Customer deleted successfully");
+                row.remove();
+            } else {
+                console.error("Failed to delete customer");
+            }
+        }).catch(error => {
+            console.error("Error:", error);
+        });
+    }
+</script>
+
+</body>
+</html>

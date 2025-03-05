@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Form</title>
+<style>
+  /* Style for the form container */
+  .form-container {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* Style for the form */
+  form {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  /* Style for the input fields */
+  input[type="number"],
+  input[type="text"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  /* Style for the button */
+  .add-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="form-container">
+  <h2>Employee Form</h2>
+
+  <form action="/prescriptions"method="post">
+    <label for="presdrug_name">Prescribed Drug Name:</label><br>
+    <input type="text" id="presdrug_name" name="presdrug_name"><br>
+    <label for="pres_date">Prescribed Date:</label><br>
+    <input type="date" id="pres_date" name="pres_date"><br>
+    <label for="pres_qty">Prescribed Quantity:</label><br>
+    <input type="number" id="pres_qty" name="pres_qty"><br>
+    <label for="customerID">Customer ID:</label><br>
+    <input type="number" id="customerID" name="cust_id"><br><br>
+    <label for="employeeID">Employee ID:</label><br>
+    <input type="number" id="employeeID" name="emp_id"><br><br>
+    <label for="prescriptionID">Prescription ID:</label><br>
+    <input type="number" id="prescriptionID" name="pres_id"><br><br>
+    <a href="127.0.0.1:5000/prescription/list"><button type="submit" class="add-button">Add Prescription</button></a>
+  </form>
+</div>
+
+</body>
+</html>

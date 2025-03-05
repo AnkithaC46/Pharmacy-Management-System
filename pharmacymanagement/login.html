@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('img4.jpg') center bottom no-repeat;
+            background-size:cover; /* Adjust as needed */
+            font-family: sans-serif;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            min-height: 100vh;
+        }
+        .ContactUs {
+            width: 350px;
+            height: 480px;
+            padding: 60px 40px;
+            margin-right: 10%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h3 {
+            margin: 0;
+            padding: 0 0 20px;
+            color: #fff;
+            text-align: center;
+        }
+        h2 {
+            margin: 0;
+            padding: 0 0 20px;
+            color: #fff;
+            text-align: center;
+        }
+        .ContactUs p {
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+            color: #fff;
+            text-align:left;
+        }
+        .ContactUs input {
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            font-size: 16px;
+        }
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.349);
+        }
+        .ContactUs input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            color: #000;
+            font-size: 16px;
+            background:rgba(0, 174, 255, 0.62);
+            cursor: pointer;
+            border-radius: 20px;
+        }
+        .ContactUs input[type="submit"]:hover {
+            background-color:rgba(255, 255, 255, 0.349);
+            color: #fff;
+        }
+        .ContactUs a {
+            color: #fff;
+            text-decoration: none;
+            text-align: center; /* Center the text horizontally */
+            display: block; /* Ensure the anchor tag takes up the full width */
+            margin-top: 10px; /* Add some top margin for spacing */
+        }
+        .ContactUs a:hover {
+            text-decoration: underline;
+        }
+         /* Responsive Styles */
+         @media screen and (max-width: 768px) {
+            .ContactUs {
+                width: 50%;
+            }
+            body {
+        background: url('mobile-img2.jpg') center top no-repeat;
+        background-size: cover;
+    }
+}
+        
+    </style>
+</head>
+<body>
+    <div class="ContactUs">
+        <h3>Welcome to Pharmacy</h3>
+        <h2>Login</h2>
+
+        <form id="loginForm" action="/logins" method="POST">
+            <p><label for="name">Username</label></p>
+            <input type="text" id="username" name="username" placeholder="Enter name" required>
+            <p><label for="password">Password</label></p>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
+            <input type="submit" value="Login">
+            <a href="forgot_password.html">Forgot Password?</a>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Check if username and password are not empty
+            if (username.trim() === "" || password.trim() === "") {
+                alert("Please enter both username and password.");
+                return false; // Prevent form submission
+            }
+
+            // For demonstration purposes, assuming login is successful if both fields are filled
+            alert("Login successful!");
+            return true; // Allow form submission
+        }
+    </script>
+    </script>
+</body>
+</html>

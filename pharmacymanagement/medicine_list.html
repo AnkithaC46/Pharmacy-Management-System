@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicine List</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .edit-btn, .delete-btn {
+        background-color: blue;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+</style>
+</head>
+<body>
+<h2>Employee List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>DrugName</th>
+            <th>Price</th>
+            <th>Stock Quantity</th>
+            <th>Expire Date</th>
+            <th>Employee ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for medicine in medicines %}
+        <tr>
+            <td>{{ medicine[0] }}</td> <!-- Assuming emp_id is the first column -->
+            <td contenteditable="false">{{ medicine[1] }}</td> <!-- Assuming emp_name is the second column -->
+            <td contenteditable="false">{{ medicine[2] }}</td> <!-- Assuming emp_phno is the third column -->
+            <td contenteditable="false">{{ medicine[3] }}</td>
+            <td contenteditable="false">{{ medicine[4] }}</td>
+            <td>
+                <button class="edit-btn" onclick="toggleEditable(this)">Edit</button>
+                <button class="delete-btn" onclick="deleteMedicine(this)">Delete</button>
+            </td><!-- Assuming emp_role is the fourth column -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    function toggleEditable(button) {
+        var row = button.parentNode.parentNode;
+        var cells = row.querySelectorAll('td');
+        cells.forEach(function(cell) {
+            cell.contentEditable = !cell.isContentEditable;
+        });
+        if (button.innerText === "Edit") {
+            button.innerText = "Save";
+        } else {
+            button.innerText = "Edit";
+            // Get the updated data
+            var drug_name = row.cells[0].innerText;
+            var price = row.cells[1].innerText;
+            var stock_qty = row.cells[2].innerText;
+            var expire_date = row.cells[3].innerText;
+            var emp_id = row.cells[4].innerText;
+            // Send the updated data to the server
+            updateMedicine(drug_name,price,stock_qty,expire_date,emp_id);
+        }
+    }
+
+    function updateMedicine(drug_name,price,stock_qty,expire_date,emp_id) {
+        // Send a POST request to the server to update the database
+        fetch('/update_medicine', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                drug_name: drug_name,
+                price: price,
+                stock_qty: stock_qty,
+                expire_date: expire_date,
+                emp_id:emp_id
+            })
+        }).then(response => {
+            if (response.ok) {
+                console.log("Medicine updated successfully");
+            } else {
+                console.error("Failed to update Medicine");
+            }
+        }).catch(error => {
+            console.error("Error:", error);
+        });
+    }
+
+    function deleteMedicine(button) {
+        var row = button.parentNode.parentNode;
+        var drug_name = row.cells[0].innerText;
+        // Send a POST request to the server to delete the employee
+        fetch('/delete_medicine', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                drug_name: drug_name
+            })
+        }).then(response => {
+            if (response.ok) {
+                console.log("Medicine deleted successfully");
+                row.remove();
+            } else {
+                console.error("Failed to delete medicine");
+            }
+        }).catch(error => {
+            console.error("Error:", error);
+        });
+    }
+</script>
+
+</body>
+</html>

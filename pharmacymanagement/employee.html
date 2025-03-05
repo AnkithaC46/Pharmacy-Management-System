@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Form</title>
+<style>
+  /* Style for the form container */
+  .form-container {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* Style for the form */
+  form {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  /* Style for the input fields */
+  input[type="number"],
+  input[type="text"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  /* Style for the button */
+  .add-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="form-container">
+  <h2>Employee Form</h2>
+
+  <form action="/employees"method="post">
+    <label for="employeeId">Employee ID:</label><br>
+    <input type="number" id="employeeId" name="emp_id"><br>
+    <label for="employeeName">Employee Name:</label><br>
+    <input type="text" id="employeeName" name="emp_name"><br>
+    <label for="employeePhone">Employee Phone:</label><br>
+    <input type="tel" id="employeePhone" name="emp_phno"><br>
+    <label for="employeeRole">Employee Role:</label><br>
+    <input type="text" id="employeeRole" name="emp_role"><br><br>
+    <a href="127.0.0.1:5000/employee/list"><button type="submit" class="add-button">Add Employee</button></a>
+  </form>
+</div>
+
+</body>
+</html>

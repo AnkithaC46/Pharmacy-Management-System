@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bill Form</title>
+<style>
+  /* Style for the form container */
+  .form-container {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* Style for the form */
+  form {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  /* Style for the input fields */
+  input[type="number"],
+  input[type="text"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  /* Style for the button */
+  .add-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="form-container">
+  <h2>Bill Form</h2>
+
+  <form action="/bills"method="post">
+    <label for="billno">Bill Number:</label><br>
+    <input type="number" id="billno" name="bill_no"><br>
+    <label for="cutomerName">Customer Name:</label><br>
+    <input type="text" id="cutomerName" name="cust_name"><br>
+    <label for="customerID">Customer ID:</label><br>
+    <input type="number" id="customerID" name="cust_id"><br>
+    <label for="dateandtime">Date and Time:</label><br>
+    <input type="datetime-local" id="dateandtime" name="dateandtime"><br><br>
+    <label for="totalmedicineqty">Total medicine quantity</label><br>
+    <input type="number" id="totalmedicineqty" name="totalmedicine_qty"><br><br>
+    <label for="totalamount">Total Amount</label><br>
+    <input type="text" id="totalamount" name="totalamount"><br><br>
+    <label for="paymentstatus">Payment Status</label><br>
+    <input type="text" id="paymentstatus" name="payment_status"><br><br>
+    <label for="employeeId">Employee ID</label><br>
+    <input type="number" id="employeeId" name="emp_id"><br><br>
+    <a href="127.0.0.1:5000/bill/list"><button type="submit" class="add-button">Add Bill</button></a>
+  </form>
+</div>
+
+</body>
+</html>

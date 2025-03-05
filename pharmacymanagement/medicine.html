@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>medicine Form</title>
+<style>
+  /* Style for the form container */
+  .form-container {
+    width: 50%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* Style for the form */
+  form {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  /* Style for the input fields */
+  input[type="number"],
+  input[type="text"],
+  input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  /* Style for the button */
+  .add-button {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="form-container">
+  <h2>Medicine Form</h2>
+
+  <form action="/medicines"method="post">
+    <label for="drugName">Drug Name:</label><br>
+    <input type="text" id="drugName" name="drug_name"><br>
+    <label for="price">Price:</label><br>
+    <input type="text" id="price" name="price"><br>
+    <label for="stockQty">Stock Quantity:</label><br>
+    <input type="number" id="stockQty" name="stock_qty"><br>
+    <label for="expireDate">Expire Date:</label><br>
+    <input type="date" id="expireDate" name="expire_date"><br><br>
+    <label for="employeeId">Employee ID:</label><br>
+    <input type="number" id="employeeId" name="emp_id"><br><br>
+    <a href="127.0.0.1:5000/medicine/list"><button type="submit" class="add-button">Add Medicine</button></a>
+  </form>
+</div>
+
+</body>
+</html>

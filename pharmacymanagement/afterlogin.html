@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>HOME</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-image: url('image1.jpg') center top no-repeat;
+            background-size: cover;
+        }
+
+        .btn {
+            position: absolute;
+            top: 15px;
+            left: 45px;
+            height: 45px;
+            width: 45px;
+            text-align: center;
+            background: #1b1b1b;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: left 0.4s ease;
+        }
+
+        .btn.click {
+            left: 260px;
+        }
+
+        .btn span {
+            color: white;
+            font-size: 28px;
+            line-height: 45px;
+        }
+
+        .btn.click span:before {
+            content: '\f00d';
+        }
+
+        .sidebar {
+            position: fixed;
+            width: 250px;
+            height: 100%;
+            left: -250px;
+            background: #1b1b1b;
+            transition: left 0.4s ease;
+        }
+
+        .sidebar.show {
+            left: 0px;
+        }
+
+        .sidebar .text {
+            color: white;
+            font-size: 25px;
+            font-weight: 600;
+            line-height: 65px;
+            text-align: center;
+            background: #1e1e1e;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            background: #1b1b1b;
+            height: 100%;
+            width: 100%;
+            list-style: none;
+        }
+
+        nav ul li {
+            line-height: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul li:last-child {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav ul li a {
+            position: relative;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding-left: 40px;
+            font-weight: 500;
+            display: block;
+            width: 100%;
+            border-left: 3px solid transparent;
+        }
+
+        nav ul li.active a {
+            color: cyan;
+            background: #1e1e1e;
+            border-left-color: cyan;
+        }
+
+        nav ul li a:hover {
+            background: #1e1e1e;
+        }
+
+        nav ul ul {
+            position: static;
+            display: none;
+        }
+
+        nav ul .feat-show.show {
+            display: block;
+        }
+
+        nav ul .serv-show.show1 {
+            display: block;
+        }
+
+        nav ul .serv1-show.show2 {
+            display: block;
+        }
+
+        nav ul .serv2-show.show3 {
+            display: block;
+        }
+
+        nav ul .serv3-show.show4 {
+            display: block;
+        }
+
+        nav ul ul li {
+            line-height: 42px;
+            border-top: none;
+        }
+
+        nav ul ul li a {
+            font-size: 17px;
+            color: #e6e6e6;
+            padding-left: 80px;
+        }
+
+        nav ul li.active ul li a {
+            color: #e6e6e6;
+            background: #1b1b1b;
+            border-left-color: transparent;
+        }
+
+        nav ul ul li a:hover {
+            color: cyan !important;
+            background: #1e1e1e !important;
+        }
+
+        nav ul li a span {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            font-size: 22px;
+            transition: transform 0.4s;
+        }
+
+        nav ul li a span.rotate {
+            transform: translateY(-50%) rotate(-180deg);
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #202020;
+            z-index: -1;
+            text-align: center;
+        }
+
+        .content .header {
+            font-size: 45px;
+            font-weight: 600;
+        }
+
+        .content p {
+            font-size: 30px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+<div class="btn">
+    <span class="fas fa-bars"></span>
+</div>
+<nav class="sidebar">
+    <div class="text">
+        Menu
+    </div>
+    <ul>
+        <li class="active"><a href="p2.html">Logout</a></li>
+        <li>
+            <a href="#" class="feat-btn">Employee
+                <span class="fas fa-caret-down first"></span>
+            </a>
+            <ul class="feat-show">
+            <li><a href="/employee/list">View Employee</a></li>
+            <li><a href="/employee">Add Employee</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="serv-btn">Customer
+                <span class="fas fa-caret-down second"></span>
+            </a>
+            <ul class="serv-show">
+                <li><a href="/customer/list">View customer</a></li>
+                <li><a href="/customer">Add customer</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="serv1-btn">Prescription
+                <span class="fas fa-caret-down second"></span>
+            </a>
+            <ul class="serv1-show">
+                <li><a href="/prescription/list">view prescription</a></li>
+                <li><a href="/prescription">Add prescription</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="serv2-btn">Medicine
+                <span class="fas fa-caret-down second"></span>
+            </a>
+            <ul class="serv2-show">
+                <li><a href="/medicine/list">view Medicine</a></li>
+                <li><a href="/medicine">Add Medicine</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="serv3-btn">Bill
+                <span class="fas fa-caret-down second"></span>
+            </a>
+            <ul class="serv3-show">
+                <li><a href="/bill/list">view bill</a></li>
+                <li><a href="/bill">Add bill</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div class="content">
+    <div class="header">
+        Pharmacy
+    </div>
+    <p>
+        FEEL WELL,LIVE BETTER
+    </p>
+</div>
+</form>
+<script>
+    document.querySelector('.btn').addEventListener('click', function() {
+        this.classList.toggle('click');
+        document.querySelector('.sidebar').classList.toggle('show');
+    });
+
+    document.querySelector('.feat-btn').addEventListener('click', function() {
+        document.querySelector('nav ul .feat-show').classList.toggle('show');
+        document.querySelector('nav ul .first').classList.toggle('rotate');
+    });
+
+    document.querySelector('.serv-btn').addEventListener('click', function() {
+        document.querySelector('nav ul .serv-show').classList.toggle('show1');
+        document.querySelector('nav ul .second').classList.toggle('rotate');
+    });
+    document.querySelector('.serv1-btn').addEventListener('click', function() {
+        document.querySelector('nav ul .serv1-show').classList.toggle('show2');
+        document.querySelector('nav ul .third').classList.toggle('rotate');
+    });
+    document.querySelector('.serv2-btn').addEventListener('click', function() {
+        document.querySelector('nav ul .serv2-show').classList.toggle('show3');
+        document.querySelector('nav ul .fourth').classList.toggle('rotate');
+    });
+    document.querySelector('.serv3-btn').addEventListener('click', function() {
+        document.querySelector('nav ul .serv3-show').classList.toggle('show4');
+        document.querySelector('nav ul .fifth').classList.toggle('rotate');
+    });
+
+    document.querySelectorAll('nav ul li').forEach(function(item) {
+        item.addEventListener('click', function() {
+            this.classList.add('active');
+            this.siblings().forEach(function(sibling) {
+                sibling.classList.remove('active');
+            });
+        });
+    });
+
+</script>
+</body>
+</html>
